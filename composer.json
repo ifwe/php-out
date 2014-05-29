@@ -1,0 +1,13 @@
+{
+    "name": "tagged/out",
+    "description": "Simple output library for writing to php templates",
+    "authors": [
+        {
+            "name": "Chris Johnson",
+            "email": "cjohnson@tagged.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": ">=4"
+    }
+}
