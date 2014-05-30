@@ -1,6 +1,9 @@
 {
     "name": "tagged/out",
-    "description": "Simple output library for writing to php templates",
+    "version": "0.1.0",
+    "type": "library",
+    "license": "MIT",
+    "description": "Terse output functions for php templates",
     "authors": [
         {
             "name": "Chris Johnson",
@@ -9,5 +12,8 @@
     ],
     "require-dev": {
         "phpunit/phpunit": ">=4"
+    },
+    "autoload": {
+        "files": ["out.php"]
     }
 }
