@@ -32,23 +32,6 @@ function text($s) {
 }
 
 /**
- * Return html attribute text.
- * @return string
- * @deprecated identical to stext($s)
- */
-function sattr($s) {
-    return stext($s);
-}
-
-/**
- * Write html attribute text.
- * @deprecated identical to text($s)
- */
-function attr($s) {
-    echo stext($s);
-}
-
-/**
  * Return raw html.
  * @return string
  */
