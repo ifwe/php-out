@@ -84,7 +84,7 @@ function binary($s) {
  * @return string
  */
 function sscript($s) {
-    $s = @iconv('UTF-8', 'UTF-8//IGNORE', $s);
+    $s = sraw($s);
     if (strpos($s, '</script') !== false) {
         throw new InvalidOutputException("Invalid terminator found in script tag output, '$s'");
     }
@@ -103,7 +103,7 @@ function script($s) {
  * @return string
  */
 function sstyle($s) {
-    $s = @iconv('UTF-8', 'UTF-8//IGNORE', $s);
+    $s = sraw($s);
     if (strpos($s, '</style') !== false) {
         throw new InvalidOutputException("Invalid terminator found in style tag output, '$s'");
     }
@@ -122,7 +122,7 @@ function style($s) {
  * @return string
  */
 function scdata($s) {
-    $s = @iconv('UTF-8', 'UTF-8//IGNORE', $s);
+    $s = sraw($s);
     if (strpos($s, ']]>') !== false) {
         throw new InvalidOutputException("Invalid terminator found in cdata output, '$s'");
     }
