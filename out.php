@@ -5,15 +5,15 @@
 
 namespace out;
 
+use InvalidArgumentException;
+
+class InvalidOutputException extends InvalidArgumentException {
+}
+
 // in php 5.4, we will use non-utf8 character substitution
 // as this feature is not available in 5.3, fallback on non-utf8 char removal
 if (!defined('ENT_SUBSTITUTE')) {
     define('ENT_SUBSTITUTE', ENT_IGNORE);
-}
-
-use InvalidArgumentException;
-
-class InvalidOutputException extends InvalidArgumentException {
 }
 
 /**
