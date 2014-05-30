@@ -6,7 +6,8 @@ class OutTest extends PHPUnit_Framework_TestCase {
 
     public function outTestProvider() {
         // replacement character
-        $RC = ENT_SUBSTITUTE === ENT_IGNORE ? '' : '�';
+        $htmlReplace = defined('ENT_SUBSTITUTE') ? '�' : '';
+        $rawReplace = class_exists('UConverter') ? '�' : '';
 
         return array(
             array("<>\"'&",    'text',   '&lt;&gt;&quot;&#039;&amp;'),
@@ -14,11 +15,13 @@ class OutTest extends PHPUnit_Framework_TestCase {
             array("<>\"'&",    'binary', '<>"\'&'),
             array("<>\"'&",    'script', '<>"\'&'),
             array("<>\"'&",    'style',  '<>"\'&'),
-            array("foo bar 漢字 \xFF",   'text',   "foo bar 漢字 $RC"),
-            array("foo bar 漢字 \xFF",   'raw',    "foo bar 漢字 "),
+            array("<>\"'&",    'cdata',  '<>"\'&'),
+            array("foo bar 漢字 \xFF",   'text',   "foo bar 漢字 $htmlReplace"),
+            array("foo bar 漢字 \xFF",   'raw',    "foo bar 漢字 $rawReplace"),
             array("foo bar 漢字 \xFF",   'binary', "foo bar 漢字 \xFF"),
-            array("foo bar 漢字 \xFF",   'script', "foo bar 漢字 "),
-            array("foo bar 漢字 \xFF",   'style',  "foo bar 漢字 "),
+            array("foo bar 漢字 \xFF",   'script', "foo bar 漢字 $rawReplace"),
+            array("foo bar 漢字 \xFF",   'style',  "foo bar 漢字 $rawReplace"),
+            array("foo bar 漢字 \xFF",   'cdata',  "foo bar 漢字 $rawReplace"),
         );
     }
 

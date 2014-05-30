@@ -10,18 +10,22 @@ use InvalidArgumentException;
 class InvalidOutputException extends InvalidArgumentException {
 }
 
-// in php 5.4, we will use non-utf8 character substitution
-// as this feature is not available in 5.3, fallback on non-utf8 char removal
-if (!defined('ENT_SUBSTITUTE')) {
-    define('ENT_SUBSTITUTE', ENT_IGNORE);
-}
-
 /**
  * Return html encoded text.
  * @return string
  */
-function stext($s) {
-    return htmlentities($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+if (defined('ENT_SUBSTITUTE')) {
+
+    function stext($s) {
+        return htmlentities($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    }
+
+} else {
+
+    function stext($s) {
+        return htmlentities($s, ENT_QUOTES | ENT_IGNORE, 'UTF-8');
+    }
+
 }
 
 /**
@@ -35,9 +39,20 @@ function text($s) {
  * Return raw html.
  * @return string
  */
-function sraw($s) {
-    $s = @iconv('UTF-8', 'UTF-8//IGNORE', $s);
-    return $s;
+if (class_exists('UConverter')) {
+
+    function sraw($s) {
+        $s = \UConverter::transcode($s, 'UTF-8', 'UTF-8');
+        return $s;
+    }
+
+} else {
+
+    function sraw($s) {
+        $s = @iconv('UTF-8', 'UTF-8//IGNORE', $s);
+        return $s;
+    }
+
 }
 
 /**
