@@ -1,13 +1,12 @@
 the out library
 ===============
 
-Echo is evil.
-Use the out library instead.
+Terse output functions for effortless php templating.
 
 install
 -------
 
-Add the following to your [composer.json](https://getcomposer.org/) file.
+Add the following to [composer.json](https://getcomposer.org/).
 TODO: Update this library with a tag or publish to packagist,
 so the `@dev` modifier will not be required.
 
@@ -18,28 +17,65 @@ so the `@dev` modifier will not be required.
         }
     ],
     "require": {
-        "tagged/out": "*@dev"
+        "tagged/out": "*"
     }
+
+The out library is included with the composer autoloader.
+
+    require 'vendor/autoload.php';
+
 
 usage
 -----
 
-The out library should be included by default with the autoloader.
+### output functions
 
-    require 'vendor/autoload.php';
+All output functions write directly to stdout.
 
-To write text into an html file, use `out\text`.
+
+#### Write html-escaped text with `out\text`
 
     <h1>Hello <?php out\text($name) ?></h1>
 
-Attributes can also be written this way.
+    <img src="<?php out\text($image_url) ?>">
 
-    <img src="<?php out\text($url) ?>">
-
-For strings containing previously formatted html, use `out\raw`.
+#### Write raw html with `out\html`
 
     <div id="content">
-        <?php out\text($content) ?>
+        <?php out\html($content_html) ?>
     </div>
 
-TODO: `out\binary`, `out\script`, `out\style`, `out\cdata`, and the "s" functions.
+#### Write binary with `out\binary`
+
+    <?php out\binary($image_binary) ?>
+
+#### Write data into a script block with `out\script`
+
+    <script>
+        var data = <?php out\script(json_encode($data)) ?>;
+    </script>
+
+#### Write data into a style block with `out\style`
+
+	<style>
+	    <?php out\style($css) ?>
+	</style>
+
+#### Write data into a cdata block with `out\cdata`
+
+    <![CDATA[
+        <?php out\cdata($character_data) ?>
+    ]]>
+
+
+### string functions
+
+All string functions return the result as a string.
+Every output function has a corresponding string function.
+
+    $encodedName = out\stext($name);
+    $content     = out\shtml($content_html);
+    $imageBinary = out\sbinary($image_binary);
+    $scriptData  = out\sscript(json_encode($data));
+    $styleData   = out\sstyle($css);
+    $cdataData   = out\scdata($character_data);
