@@ -17,7 +17,7 @@ so the `@dev` modifier will not be required.
         }
     ],
     "require": {
-        "tagged/out": "*"
+        "tagged/out": "*@dev"
     }
 
 The out library is included with the composer autoloader.
