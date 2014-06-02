@@ -1,6 +1,5 @@
 {
     "name": "tagged/out",
-    "version": "0.1.0",
     "type": "library",
     "license": "MIT",
     "description": "Terse output functions for php templates",
