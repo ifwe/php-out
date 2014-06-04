@@ -1,7 +1,43 @@
 the out library
 ===============
 
-Terse output functions for effortless php templating.
+Motivated by the need to make it simple to construct properly formatted php templates,
+the out library provides a terse output function for all HTML5 contexts: text, html, script, style and cdata.
+It also ensures consistent character encoding by assuming [UTF-8 will be used everywhere](http://www.utf8everywhere.org/),
+and replacing (or removing) all invalid characters with the unicode replacement character, '�'.
+
+example
+-------
+
+    <?php
+
+      // blog post submitted by user
+      $userName  = '</script> I am an xss attacker';
+      $postTitle = 'I pwn you <script>pwn(home)</script>';
+      $postText  = 'Your XSS attack here';
+      $customCss = 'background:black;color:white;</style> XSS here';
+
+    ?>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title><?php out\text(sprintf(_('Blog post: %s'), $postTitle)) ?></title>
+        <style>
+          <?php out\style($customCss) ?>
+        </style>
+      </head>
+      <body>
+        <h1><?php out\text($postTitle) ?></h1>
+
+        <div id="post-body">
+          <?php out\text($postText) ?>
+        </div>
+
+        <script>
+          initApp(<?php out\script(json_encode($userName))) ?>)
+        </script>
+      </body>
+    </html>
 
 install
 -------
