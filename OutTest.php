@@ -29,12 +29,12 @@ class OutTest extends PHPUnit_Framework_TestCase {
             array("<>\"'&", 'script', '<>"\'&'),
             array("<>\"'&", 'style',  '<>"\'&'),
             array("<>\"'&", 'cdata',  '<>"\'&'),
-            array("foo bar 漢字 \xFF", 'text',   "foo bar 漢字 $textReplace"),
-            array("foo bar 漢字 \xFF", 'html',   "foo bar 漢字 $htmlReplace"),
-            array("foo bar 漢字 \xFF", 'binary', "foo bar 漢字 \xFF"),
-            array("foo bar 漢字 \xFF", 'script', "foo bar 漢字 $htmlReplace"),
-            array("foo bar 漢字 \xFF", 'style',  "foo bar 漢字 $htmlReplace"),
-            array("foo bar 漢字 \xFF", 'cdata',  "foo bar 漢字 $htmlReplace"),
+            array("foo bar 漢字 \xFF blargh", 'text',   "foo bar 漢字 $textReplace blargh"),
+            array("foo bar 漢字 \xFF blargh", 'html',   "foo bar 漢字 $htmlReplace blargh"),
+            array("foo bar 漢字 \xFF blargh", 'binary', "foo bar 漢字 \xFF blargh"),
+            array("foo bar 漢字 \xFF blargh", 'script', "foo bar 漢字 $htmlReplace blargh"),
+            array("foo bar 漢字 \xFF blargh", 'style',  "foo bar 漢字 $htmlReplace blargh"),
+            array("foo bar 漢字 \xFF blargh", 'cdata',  "foo bar 漢字 $htmlReplace blargh"),
         );
     }
 
