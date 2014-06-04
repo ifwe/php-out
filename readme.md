@@ -48,17 +48,15 @@ Add the following to [composer.json](https://getcomposer.org/).
 TODO: Update this library with a tag or publish to packagist,
 so the `@dev` modifier will not be required.
 
-```json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.tagged.com/cjohnson/php-out.git"
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.tagged.com/cjohnson/php-out.git"
+        }
+    ],
+    "require": {
+        "tagged/out": "*@dev"
     }
-],
-"require": {
-    "tagged/out": "*@dev"
-}
-```
 
 The out library is included with the composer autoloader.
 
