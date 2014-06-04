@@ -6,6 +6,9 @@ the out library provides terse output functions for all HTML5 contexts: text, ht
 It also ensures consistent character encoding by assuming [UTF-8 will be used everywhere](http://www.utf8everywhere.org/),
 and replacing (or removing) all invalid characters with the unicode replacement character, '�'.
 
+[![Build Status](https://travis-ci.org/tagged/php-out.svg?branch=master)](https://travis-ci.org/tagged/php-out)
+
+
 example
 -------
 
