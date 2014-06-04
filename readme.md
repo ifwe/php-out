@@ -1,5 +1,5 @@
-the out library
-===============
+out\text('is safer than echo')
+==============================
 
 Motivated by the need to easily construct properly formatted php templates,
 the out library provides terse output functions for all HTML5 contexts: text, html, script, style and CDATA.
