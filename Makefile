@@ -1,4 +1,3 @@
-
 test:
 	./vendor/bin/phpunit OutTest.php
 
