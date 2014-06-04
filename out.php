@@ -1,6 +1,7 @@
 <?php
 /**
  * Terse output functions for effortless php templating.
+ * Each function is intended for a specific HTML5 context.
  * All functions ensure proper UTF-8 character encoding.
  */
 
@@ -22,6 +23,8 @@ class OutException extends InvalidArgumentException {
  * Example:
  *
  *  <h1><?php out\text("Hello $name!") ?></h1>
+ *
+ *  <img src="<?php out\text($url) ?>">
  */
 function text($s) {
     echo stext($s);
