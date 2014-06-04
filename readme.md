@@ -1,43 +1,45 @@
 the out library
 ===============
 
-Motivated by the need to make it simple to construct properly formatted php templates,
-the out library provides a terse output function for all HTML5 contexts: text, html, script, style and cdata.
+Motivated by the need to easily construct properly formatted php templates,
+the out library provides terse output functions for all HTML5 contexts: text, html, script, style and CDATA.
 It also ensures consistent character encoding by assuming [UTF-8 will be used everywhere](http://www.utf8everywhere.org/),
 and replacing (or removing) all invalid characters with the unicode replacement character, '�'.
 
 example
 -------
 
-    <?php
+```php
+<?php
 
-      // blog post submitted by user
-      $userName  = '</script> I am an xss attacker';
-      $postTitle = 'I pwn you <script>pwn(home)</script>';
-      $postText  = 'Your XSS attack here';
-      $customCss = 'background:black;color:white;</style> XSS here';
+  // blog post submitted by user
+  $userName  = '</script> I am an xss attacker';
+  $postTitle = 'I pwn you <script>pwn(home)</script>';
+  $postText  = 'Your XSS attack here';
+  $customCss = 'background:black;color:white;</style> XSS here';
 
-    ?>
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title><?php out\text(sprintf(_('Blog post: %s'), $postTitle)) ?></title>
-        <style>
-          <?php out\style($customCss) ?>
-        </style>
-      </head>
-      <body>
-        <h1><?php out\text($postTitle) ?></h1>
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><?php out\text(sprintf(_('Blog post: %s'), $postTitle)) ?></title>
+    <style>
+      <?php out\style($customCss) ?>
+    </style>
+  </head>
+  <body>
+    <h1><?php out\text($postTitle) ?></h1>
 
-        <div id="post-body">
-          <?php out\text($postText) ?>
-        </div>
+    <div id="post-body">
+      <?php out\text($postText) ?>
+    </div>
 
-        <script>
-          initApp(<?php out\script(json_encode($userName))) ?>)
-        </script>
-      </body>
-    </html>
+    <script>
+      initApp(<?php out\script(json_encode($userName))) ?>)
+    </script>
+  </body>
+</html>
+```
 
 install
 -------
@@ -46,15 +48,17 @@ Add the following to [composer.json](https://getcomposer.org/).
 TODO: Update this library with a tag or publish to packagist,
 so the `@dev` modifier will not be required.
 
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.tagged.com/cjohnson/php-out.git"
-        }
-    ],
-    "require": {
-        "tagged/out": "*@dev"
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.tagged.com/cjohnson/php-out.git"
     }
+],
+"require": {
+    "tagged/out": "*@dev"
+}
+```
 
 The out library is included with the composer autoloader.
 
@@ -71,47 +75,60 @@ All output functions write directly to stdout.
 
 #### Write html-escaped text with `out\text`
 
-    <h1>Hello <?php out\text($name) ?></h1>
+```php
+<h1>Hello <?php out\text($name) ?></h1>
 
-    <img src="<?php out\text($image_url) ?>">
+<img src="<?php out\text($image_url) ?>">
+```
 
 #### Write raw html with `out\html`
 
-    <div id="content">
-        <?php out\html($content_html) ?>
-    </div>
+```php
+<div id="content">
+    <?php out\html($content_html) ?>
+</div>
+```
 
 #### Write binary with `out\binary`
 
-    <?php out\binary($image_binary) ?>
+```php
+<?php out\binary($image_binary) ?>
+```
 
 #### Write data into a script block with `out\script`
 
-    <script>
-        var data = <?php out\script(json_encode($data)) ?>;
-    </script>
+```php
+<script>
+    var data = <?php out\script(json_encode($data)) ?>;
+</script>
+```
 
 #### Write data into a style block with `out\style`
 
-	<style>
-	    <?php out\style($css) ?>
-	</style>
+```php
+<style>
+    <?php out\style($css) ?>
+</style>
+```
 
 #### Write data into a cdata block with `out\cdata`
 
-    <![CDATA[
-        <?php out\cdata($character_data) ?>
-    ]]>
-
+```php
+<![CDATA[
+    <?php out\cdata($character_data) ?>
+]]>
+```
 
 ### string functions
 
 All string functions return the result as a string.
 Every output function has a corresponding string function.
 
-    $encodedName = out\stext($name);
-    $content     = out\shtml($content_html);
-    $imageBinary = out\sbinary($image_binary);
-    $scriptData  = out\sscript(json_encode($data));
-    $styleData   = out\sstyle($css);
-    $cdataData   = out\scdata($character_data);
+```php
+$encodedName = out\stext($name);
+$content     = out\shtml($content_html);
+$imageBinary = out\sbinary($image_binary);
+$scriptData  = out\sscript(json_encode($data));
+$styleData   = out\sstyle($css);
+$cdataData   = out\scdata($character_data);
+```
