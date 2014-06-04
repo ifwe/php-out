@@ -50,7 +50,7 @@ class OutTest extends PHPUnit_Framework_TestCase {
             $input = 'foo = "bar";</script ><script>alert(666);</script >';
             out\script($input);
             $this->fail('Expected script terminator to throw');
-        } catch (out\InvalidOutputException $e) {
+        } catch (out\OutException $e) {
             $this->assertContains($input, $e->getMessage());
         }
     }
@@ -60,7 +60,7 @@ class OutTest extends PHPUnit_Framework_TestCase {
             $input = 'background-color: red;</style ><script>alert(666);</script>';
             out\style($input);
             $this->fail('Expected style terminator to throw');
-        } catch (out\InvalidOutputException $e) {
+        } catch (out\OutException $e) {
             $this->assertContains($input, $e->getMessage());
         }
     }
@@ -70,7 +70,7 @@ class OutTest extends PHPUnit_Framework_TestCase {
             $input = 'background-color: red;]]><script>alert(666);</script>';
             out\cdata($input);
             $this->fail('Expected style terminator to throw');
-        } catch (out\InvalidOutputException $e) {
+        } catch (out\OutException $e) {
             $this->assertContains($input, $e->getMessage());
         }
     }
