@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__.'/out.php';
-
 class OutTest extends PHPUnit_Framework_TestCase {
 
     public function outTestProvider() {

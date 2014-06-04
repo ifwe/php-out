@@ -1,4 +1,4 @@
 test:
-	./vendor/bin/phpunit OutTest.php
+	./vendor/bin/phpunit --bootstrap vendor/autoload.php OutTest.php
 
 .PHONY: test
