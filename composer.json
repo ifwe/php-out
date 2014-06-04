@@ -1,8 +1,8 @@
 {
     "name": "tagged/out",
     "type": "library",
-    "description": "Terse output functions for php templates",
-    "license": "MIT",
+    "description": "Terse output functions for effortless php templating.",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Chris Johnson",
