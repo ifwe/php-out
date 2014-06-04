@@ -6,57 +6,49 @@ the out library provides terse output functions for all HTML5 contexts: text, ht
 It also ensures consistent character encoding by assuming [UTF-8 will be used everywhere](http://www.utf8everywhere.org/),
 and replacing (or removing) all invalid characters with the unicode replacement character, '�'.
 
+
 example
 -------
 
 ```php
 <?php
 
-  // blog post submitted by user
-  $userName  = '</script> I am an xss attacker';
-  $postTitle = 'I pwn you <script>pwn(home)</script>';
-  $postText  = 'Your XSS attack here';
-  $customCss = 'background:black;color:white;</style> XSS here';
+// blog post submitted by user
+$userName  = '</script> I am an xss attacker';
+$postTitle = 'I pwn you <script>pwn(home)</script>';
+$postBody  = '<p>This html block <em>MUST</em> be well scrubbed or come from a trusted source.</p>';
+$customCss = 'background:black;color:white;</style> XSS here';
+$cdata     = 'Who uses this?';
 
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><?php out\text(sprintf(_('Blog post: %s'), $postTitle)) ?></title>
-    <style>
-      <?php out\style($customCss) ?>
-    </style>
-  </head>
-  <body>
-    <h1><?php out\text($postTitle) ?></h1>
-
-    <div id="post-body">
-      <?php out\text($postText) ?>
-    </div>
-
-    <script>
-      initApp(<?php out\script(json_encode($userName))) ?>)
-    </script>
-  </body>
+<head>
+  <title><?php out\text(sprintf(_('Blog post: %s'), $postTitle)) ?></title>
+  <style>
+    <?php out\style($customCss) ?>
+  </style>
+</head>
+<body>
+  <h1><?php out\text($postTitle) ?></h1>
+  <div id="post-body">
+    <?php out\html($postBody) ?>
+  </div>
+  <script>
+    initApp(<?php out\script(json_encode($userName))) ?>)
+  </script>
+  <![CDATA[<?php out\cdata($cdata) ?>]]>
+</body>
 </html>
 ```
+
 
 install
 -------
 
-Add the following to [composer.json](https://getcomposer.org/).
-TODO: Update this library with a tag or publish to packagist,
-so the `@dev` modifier will not be required.
+Add to [composer.json](https://getcomposer.org/) from packagist.
 
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.tagged.com/cjohnson/php-out.git"
-        }
-    ],
-    "require": {
-        "tagged/out": "*@dev"
-    }
+    composer install --save tagged/out
 
 The out library is included with the composer autoloader.
 
