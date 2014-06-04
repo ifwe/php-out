@@ -54,10 +54,28 @@ class OutTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @expectedException        out\OutException
+     * @expectedExceptionMessage </ScRiPt
+     */
+    public function testOutSScriptWithStrangeCaseScriptTerminator() {
+        $input = '</ScRiPt';
+        out\sscript($input);
+    }
+
+    /**
+     * @expectedException        out\OutException
      * @expectedExceptionMessage </style
      */
     public function testOutSStyleWithStyleTerminator() {
         $input = '</style';
+        out\sstyle($input);
+    }
+
+    /**
+     * @expectedException        out\OutException
+     * @expectedExceptionMessage </sTyLe
+     */
+    public function testOutSStyleWithStrangeCaseStyleTerminator() {
+        $input = '</sTyLe';
         out\sstyle($input);
     }
 

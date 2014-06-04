@@ -189,7 +189,7 @@ function sbinary($s) {
  */
 function sscript($s) {
     $s = shtml($s);
-    if (strpos($s, '</script') !== false) {
+    if (stripos($s, '</script') !== false) {
         throw new OutException("Invalid terminator found in script tag output, '$s'");
     }
     return $s;
@@ -205,7 +205,7 @@ function sscript($s) {
  */
 function sstyle($s) {
     $s = shtml($s);
-    if (strpos($s, '</style') !== false) {
+    if (stripos($s, '</style') !== false) {
         throw new OutException("Invalid terminator found in style tag output, '$s'");
     }
     return $s;
