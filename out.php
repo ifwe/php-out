@@ -15,6 +15,7 @@ class OutException extends InvalidArgumentException {
 
 /**
  * Output html escaped text.
+ * Invalid UTF-8 characters are replaced (or removed in applications using php 5.3).
  *
  * @param string $s to output
  *
@@ -28,6 +29,7 @@ function text($s) {
 
 /**
  * Output raw html.
+ * Invalid UTF-8 characters are replaced (or removed if UConverter is not available).
  *
  * @param string $s to output
  *
@@ -43,6 +45,7 @@ function html($s) {
 
 /**
  * Output raw binary data.
+ * Invalid UTF-8 characters are replaced (or removed if UConverter is not available).
  *
  * @param string $s to output
  *
@@ -56,6 +59,7 @@ function binary($s) {
 
 /**
  * Output script block text.
+ * Invalid UTF-8 characters are replaced (or removed if UConverter is not available).
  *
  * @param string $s to output
  * @throws OutException if $s contains '</script', which would otherwise terminate the block
@@ -72,6 +76,7 @@ function script($s) {
 
 /**
  * Output style block text.
+ * Invalid UTF-8 characters are replaced (or removed if UConverter is not available).
  *
  * @param string $s to output
  * @throws OutException if $s contains '</style', which would terminate the block
@@ -88,6 +93,7 @@ function style($s) {
 
 /**
  * Output cdata block text.
+ * Invalid UTF-8 characters are replaced (or removed if UConverter is not available).
  *
  * @param string $s to output
  * @throws OutException if $s contains ']]>', which would terminate the block
