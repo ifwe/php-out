@@ -50,7 +50,7 @@ install
 
 Add to [composer.json](https://getcomposer.org/) from packagist.
 
-    composer install --save tagged/out
+    composer require tagged/out:*
 
 The out library is included with the composer autoloader.
 
