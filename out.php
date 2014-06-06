@@ -63,20 +63,6 @@ function html($s) {
 }
 
 /**
- * Output raw binary data.
- * Invalid UTF-8 characters are replaced (or removed if UConverter is not available).
- *
- * @param string $s to output
- *
- * Example:
- *
- *  <?php out\binary($jpegBinary);
- */
-function binary($s) {
-    echo $s;
-}
-
-/**
  * Output script block text.
  * Invalid UTF-8 characters are replaced (or removed if UConverter is not available).
  *
@@ -185,17 +171,6 @@ else:
 
 endif;
 
-
-/**
- * Return binary data.
- * This function actually does nothing.
- *
- * @param string $s to remain unchanged
- * @return string
- */
-function sbinary($s) {
-    return $s;
-}
 
 /**
  * Return script block text.

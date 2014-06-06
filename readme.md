@@ -81,12 +81,6 @@ All output functions write directly to stdout.
 </div>
 ```
 
-#### Write binary with `out\binary`
-
-```php
-<?php out\binary($image_binary) ?>
-```
-
 #### Write data into a script block with `out\script`
 
 ```php
@@ -119,7 +113,6 @@ Every output function has a corresponding string function.
 ```php
 $encodedName = out\stext($name);
 $content     = out\shtml($content_html);
-$imageBinary = out\sbinary($image_binary);
 $scriptData  = out\sscript(json_encode($data));
 $styleData   = out\sstyle($css);
 $cdataData   = out\scdata($character_data);

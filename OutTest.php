@@ -25,13 +25,11 @@ class OutTest extends PHPUnit_Framework_TestCase {
         return array(
             array("<>\"'&", 'text',   '&lt;&gt;&quot;&#039;&amp;'),
             array("<>\"'&", 'html',   '<>"\'&'),
-            array("<>\"'&", 'binary', '<>"\'&'),
             array("<>\"'&", 'script', '<>"\'&'),
             array("<>\"'&", 'style',  '<>"\'&'),
             array("<>\"'&", 'cdata',  '<>"\'&'),
             array("foo bar 漢字 \xFF blargh", 'text',   "foo bar 漢字 $textReplace blargh"),
             array("foo bar 漢字 \xFF blargh", 'html',   "foo bar 漢字 $htmlReplace blargh"),
-            array("foo bar 漢字 \xFF blargh", 'binary', "foo bar 漢字 \xFF blargh"),
             array("foo bar 漢字 \xFF blargh", 'script', "foo bar 漢字 $htmlReplace blargh"),
             array("foo bar 漢字 \xFF blargh", 'style',  "foo bar 漢字 $htmlReplace blargh"),
             array("foo bar 漢字 \xFF blargh", 'cdata',  "foo bar 漢字 $htmlReplace blargh"),
