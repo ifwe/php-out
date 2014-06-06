@@ -124,3 +124,9 @@ $scriptData  = out\sscript(json_encode($data));
 $styleData   = out\sstyle($css);
 $cdataData   = out\scdata($character_data);
 ```
+
+
+test
+----
+
+    phpunit

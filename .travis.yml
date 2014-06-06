@@ -3,7 +3,4 @@ php:
   - "5.5"
   - "5.3"
 
-before_script: composer install --no-dev
-
-script: phpunit --coverage-text --bootstrap vendor/autoload.php OutTest.php
-
+before_script: composer install
