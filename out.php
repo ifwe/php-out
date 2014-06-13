@@ -141,7 +141,7 @@ else:
 endif;
 
 
-if (class_exists('UConverter')):  // available in php 5.5 with intl support
+if (class_exists('UConverter', false)):  // available in php 5.5 with intl support
 
     /**
      * Return raw html.

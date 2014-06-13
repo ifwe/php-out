@@ -19,8 +19,8 @@ class OutTest extends PHPUnit_Framework_TestCase {
 
     public function outTestProvider() {
         // unicode replacement character
-        $textReplace = defined('ENT_SUBSTITUTE')  ? '�' : '';
-        $htmlReplace = class_exists('UConverter') ? '�' : '';
+        $textReplace = defined('ENT_SUBSTITUTE')         ? '�' : '';
+        $htmlReplace = class_exists('UConverter', false) ? '�' : '';
 
         return array(
             array("<>\"'&", 'text',   '&lt;&gt;&quot;&#039;&amp;'),
