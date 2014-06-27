@@ -2,6 +2,7 @@
     "name": "tagged/out",
     "type": "library",
     "description": "Terse output functions for effortless php templating.",
+    "homepage": "https://github.com/tagged/php-out",
     "keywords": ["tagged", "out", "template", "html"],
     "license": "Apache-2.0",
     "authors": [
