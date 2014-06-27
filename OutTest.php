@@ -127,4 +127,16 @@ class OutTest extends PHPUnit_Framework_TestCase {
         $input = 'background-color: red;]]><script>alert(666);</script>';
         out\cdata($input);
     }
+
+    /**
+     * The current version of composer (alpha 8) uses `include _library_;`
+     * for all autoloaded libraries using the "files" mechanism (like this one).
+     * This has the potential to create bootstrapping issues.
+     * The same problem does not manifest in class libraries
+     * because of the just-in-time nature of php class autoloading.
+     */
+    public function testMultipleOutLibraryIncludesJustWork() {
+        include __DIR__.'/out.php';
+        include __DIR__.'/out.php';
+    }
 }

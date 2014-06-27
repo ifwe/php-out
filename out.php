@@ -24,9 +24,12 @@
 namespace out;
 
 
-use InvalidArgumentException;
+// Composer workaround,
+// ensuring that the out library will not be defined multiple times
+if (!function_exists('out\text')):
 
-class OutException extends InvalidArgumentException {
+
+class OutException extends \InvalidArgumentException {
 }
 
 
@@ -220,3 +223,6 @@ function scdata($s) {
     }
     return $s;
 }
+
+
+endif;  // !function_exists('out\text')
